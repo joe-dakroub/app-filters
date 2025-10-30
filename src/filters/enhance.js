@@ -41,7 +41,7 @@ void main() {
   
   vec3 color = texture(uTex, uv).rgb;
   
-  // === SKIN SMOOTHING (bilateral filter) ===
+  // Skin Smoothing
   vec3 smoothed = vec3(0.0);
   float totalWeight = 0.0;
   
@@ -69,7 +69,7 @@ void main() {
   float skinAmount = skinMask(color);
   vec3 result = mix(color, smoothed, skinAmount * uSkinSmooth);
   
-  // === SHARPENING (unsharp mask) ===
+  // Sharpening
   vec3 blurred = vec3(0.0);
   for (int y = -1; y <= 1; y++) {
     for (int x = -1; x <= 1; x++) {
@@ -83,17 +83,17 @@ void main() {
   vec3 sharpened = result + (result - blurred) * uSharpness * (1.0 - skinAmount * 0.7);
   result = sharpened;
   
-  // === BRIGHTNESS ===
+  // Brightness
   result = result * (1.0 + uBrightness * 0.3);
   
-  // === SATURATION ===
+  // Saturation
   float l = luma(result);
   result = mix(vec3(l), result, 1.0 + uSaturation * 0.3);
   
-  // === SOFT CONTRAST ===
+  // Soft Contrast
   result = result * result * (3.0 - 2.0 * result);
   
-  // === SUBTLE VIGNETTE ===
+  // Subtle vignette
   vec2 vigUV = uv * 2.0 - 1.0;
   float vignette = 1.0 - dot(vigUV, vigUV) * 0.15;
   result *= vignette;

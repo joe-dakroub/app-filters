@@ -1,5 +1,4 @@
 // Shared GLSL utility functions for filters
-
 export const glsl = {
   // Luminance/Luma calculation (converts RGB to grayscale)
   luma: `

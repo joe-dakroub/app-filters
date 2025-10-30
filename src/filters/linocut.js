@@ -19,7 +19,7 @@ uniform vec3 uBgColor;
 ${glsl.luma}
 ${glsl.hash}
 
-// Improved noise function for organic texture
+// Noise function
 float organicNoise(vec2 uv) {
   vec2 i = floor(uv);
   vec2 f = fract(uv);
@@ -33,7 +33,7 @@ float organicNoise(vec2 uv) {
   return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
 }
 
-// Sobel edge detection (more efficient than 9-sample loop)
+// Sobel edge detection
 float sobelEdge(sampler2D tex, vec2 uv, vec2 pixelSize, float threshold) {
   float tl = luma(texture(tex, uv + vec2(-1.0, -1.0) * pixelSize).rgb);
   float t  = luma(texture(tex, uv + vec2( 0.0, -1.0) * pixelSize).rgb);
@@ -64,7 +64,7 @@ void main() {
   // Hard threshold with slight edge influence for detail
   float cutValue = step(uThreshold, brightness + edge * 0.1);
   
-  // Pure high-contrast output - no texture, no noise
+  // Pure high-contrast output
   vec3 finalCol = mix(uInkColor, uBgColor, cutValue);
   
   o = vec4(finalCol, 1.0);

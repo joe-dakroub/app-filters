@@ -183,7 +183,7 @@ FILTERS.forEach((f, i) => {
   select.appendChild(el("option", { value: f.id }, displayName));
 });
 
-select.value = "sketch";
+select.value = "enhance";
 const controlsHost = q("#controls");
 let currentUniformValues = {};
 let controlElements = {}; // Store references to input elements

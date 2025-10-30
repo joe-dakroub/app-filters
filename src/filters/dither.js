@@ -25,7 +25,7 @@ ${glsl.adjustContrast}
 ${glsl.hash12}
 ${glsl.hash}
 
-// Interleaved gradient noise for Atkinson approximation
+// Gradient noise for Atkinson approximation
 float interleavedGradient(vec2 pos) {
   vec3 magic = vec3(0.06711056, 0.00583715, 52.9829189);
   return fract(magic.z * fract(dot(pos, magic.xy)));

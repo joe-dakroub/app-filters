@@ -15,7 +15,7 @@ uniform float uTime;
 uniform float uStrokeWeight;
 uniform float uMaskThreshold;
 uniform vec3 uOutlineColor;
-uniform vec3 uBackgroundColor;
+uniform vec3 uShadowColor;
 uniform vec3 uPaperColor;
 
 ${glsl.luma}
@@ -241,6 +241,7 @@ void main() {
   // Two color system:
   // - Outline color: sketch lines/edges
   // - Paper color: light/background areas
+  // - Shadow color: shadow from luminance mask blending with background
   
   // Edge represents the sketch lines
   float edgeAmount = edge * 1.1;
@@ -256,7 +257,7 @@ void main() {
   }
   
   // Blend with background color based on alpha (for transparent areas)
-  final = mix(uBackgroundColor, final, alpha);
+  final = mix(uShadowColor, final, alpha);
   
   fragColor = vec4(final, 1.0);
 }`,
@@ -286,10 +287,10 @@ void main() {
       default: "#000000",
     },
     {
-      name: "BackgroundColor",
+      name: "ShadowColor",
       display: "Shadow",
       type: "color",
-      default: "#444444",
+      default: "#000000",
     },
     {
       name: "PaperColor",

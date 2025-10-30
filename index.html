@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Filters</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Joe Dakroub" />
+    <link href="/src/main.css" rel="stylesheet" />
+    <script src="/src/main.js" type="module"></script>
+  </head>
+  <body class="hide-aside2">
+    <aside>
+      <fieldset>
+        <legend>Camera</legend>
+        <div class="row bar">
+          <button id="flipBtn" style="flex: 1">Flip</button>
+          <button id="cameraBtn" style="flex: 1">Camera On</button>
+        </div>
+        <div class="row bar">
+          <button id="screenshotBtn" style="flex: 1">Screenshot</button>
+          <button id="recordBtn" style="flex: 1">Record</button>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Filter</legend>
+        <select id="filterSelect"></select>
+      </fieldset>
+
+      <div id="controls"></div>
+    </aside>
+
+    <canvas id="glcanvas"></canvas>
+    <video id="video" playsinline muted></video>
+  </body>
+</html>

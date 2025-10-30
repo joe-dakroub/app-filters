@@ -1,4 +1,4 @@
-# App Filters
+# Filters
 
 An image filter application built with Vite and Vanilla JavaScript.
 

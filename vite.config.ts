@@ -8,6 +8,6 @@ export default defineConfig({
   },
   plugins: [mkcert()],
   build: {
-    target: "es2022", // enables top-level await support
+    target: "es2022",
   },
 });

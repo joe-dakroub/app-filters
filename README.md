@@ -1,6 +1,6 @@
-# Filters
+# WebGL Filters
 
-An image filter application built with Vite and Vanilla JavaScript.
+An image filter application built with Vite and Vanilla JavaScript that demonstates WebGL filters on a live camera stream.
 
 ## Features
 

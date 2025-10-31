@@ -1,4 +1,3 @@
-/** WebGL2 Live Cam Filters **/
 import * as filters from "./filters/index.js";
 
 /* =====================================================================

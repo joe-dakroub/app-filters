@@ -178,7 +178,7 @@ async function startCamera() {
       width: { ideal: 1280 },
       height: { ideal: 720 },
     },
-    audio: false,
+    audio: true,
   });
   video.srcObject = stream;
   await video.play();

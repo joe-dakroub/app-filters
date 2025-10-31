@@ -8,7 +8,6 @@ in vec2 vUV;
 uniform sampler2D uTex;
 out vec4 fragColor;
 
-// Hard-coded values (previously uniforms with defaults)
 const float SKIN_SMOOTH = 0.35;
 const float BRIGHTNESS = 0.5;
 const float SATURATION = 0.0;

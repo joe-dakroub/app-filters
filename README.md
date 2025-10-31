@@ -13,9 +13,9 @@ An image filter application built with Vite and Vanilla JavaScript that demonsta
 
 ## Usage
 
-Press 'H' to toggle UI
-Press 'F' to toggle fullscreen
-Press 'E' to fade in/out
+- Press 'H' to toggle UI
+- Press 'F' to toggle fullscreen
+- Press 'E' to fade in/out
 
 ## Installation
 

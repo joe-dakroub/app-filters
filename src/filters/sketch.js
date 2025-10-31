@@ -238,7 +238,7 @@ void main() {
   // Emphasize edges more and clamp to 0-1 range
   float sketch = clamp(min(1.0 - edge * 1.1, shading), 0.0, 1.0);
   
-  // Two color system:
+  // Three color system:
   // - Outline color: sketch lines/edges
   // - Paper color: light/background areas
   // - Shadow color: shadow from luminance mask blending with background

@@ -40,6 +40,41 @@ mat2 rot(float a) {
   return mat2(c, -s, s, c);
 }`,
 
+  // Noise
+  noise: `
+float organicNoise(vec2 uv) {
+  vec2 i = floor(uv);
+  vec2 f = fract(uv);
+  f = f * f * (3.0 - 2.0 * f); // Smoothstep
+  
+  float a = hash(i);
+  float b = hash(i + vec2(1.0, 0.0));
+  float c = hash(i + vec2(0.0, 1.0));
+  float d = hash(i + vec2(1.0, 1.0));
+  
+  return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
+}
+  `,
+
+  // Sobel edge detection
+  sobel: `
+float sobelEdge(sampler2D tex, vec2 uv, vec2 pixelSize, float threshold) {
+  float tl = luma(texture(tex, uv + vec2(-1.0, -1.0) * pixelSize).rgb);
+  float t  = luma(texture(tex, uv + vec2( 0.0, -1.0) * pixelSize).rgb);
+  float tr = luma(texture(tex, uv + vec2( 1.0, -1.0) * pixelSize).rgb);
+  float l  = luma(texture(tex, uv + vec2(-1.0,  0.0) * pixelSize).rgb);
+  float r  = luma(texture(tex, uv + vec2( 1.0,  0.0) * pixelSize).rgb);
+  float bl = luma(texture(tex, uv + vec2(-1.0,  1.0) * pixelSize).rgb);
+  float b  = luma(texture(tex, uv + vec2( 0.0,  1.0) * pixelSize).rgb);
+  float br = luma(texture(tex, uv + vec2( 1.0,  1.0) * pixelSize).rgb);
+  
+  float gx = -tl - 2.0*l - bl + tr + 2.0*r + br;
+  float gy = -tl - 2.0*t - tr + bl + 2.0*b + br;
+  
+  return length(vec2(gx, gy));
+}
+  `,
+
   // Bayer matrix dithering (4x4)
   bayer4: `
 float bayer4(vec2 p) {
@@ -53,4 +88,23 @@ float bayer4(vec2 p) {
   );
   return bayerMatrix[index];
 }`,
+
+  skinMask: `
+float skinMask(vec3 color) {
+  float r = color.r;
+  float g = color.g;
+  float b = color.b;
+  
+  // Skin tone detection
+  float skinness = 0.0;
+  if (r > 0.35 && g > 0.2 && b > 0.1) {
+    float rg = r - g;
+    float rb = r - b;
+    if (rg > 0.0 && rg < 0.4 && rb > 0.0 && rb < 0.4) {
+      skinness = smoothstep(0.0, 0.3, rg) * smoothstep(0.0, 0.3, rb);
+    }
+  }
+  return skinness;
+}  
+  `,
 };

@@ -1,3 +1,4 @@
+import { glsl } from "./utils";
 export const passthrough = {
   id: "passthrough",
   name: "Passthrough",
@@ -13,28 +14,8 @@ const float BRIGHTNESS = 0.5;
 const float SATURATION = 0.0;
 const float SHARPNESS = 0.5;
 
-// Luminance calculation
-float luma(vec3 color) {
-  return dot(color, vec3(0.299, 0.587, 0.114));
-}
-
-// Detect skin tones
-float skinMask(vec3 color) {
-  float r = color.r;
-  float g = color.g;
-  float b = color.b;
-  
-  // Skin tone detection
-  float skinness = 0.0;
-  if (r > 0.35 && g > 0.2 && b > 0.1) {
-    float rg = r - g;
-    float rb = r - b;
-    if (rg > 0.0 && rg < 0.4 && rb > 0.0 && rb < 0.4) {
-      skinness = smoothstep(0.0, 0.3, rg) * smoothstep(0.0, 0.3, rb);
-    }
-  }
-  return skinness;
-}
+${glsl.luma}
+${glsl.skinMask}
 
 void main() {
   vec2 uv = vUV;

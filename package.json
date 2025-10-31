@@ -8,7 +8,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "lit": "^3.3.0",
     "vite-plugin-mkcert": "^1.17.8"
   },
   "devDependencies": {

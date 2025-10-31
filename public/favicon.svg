@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <rect width="256" height="256" fill="#000000"/>
+  
+  <!-- Filter layers effect -->
+  <g opacity="0.9">
+    <!-- Top layer -->
+    <circle cx="128" cy="100" r="45" fill="none" stroke="#00FF88" stroke-width="4"/>
+    
+    <!-- Middle layer -->
+    <circle cx="128" cy="128" r="45" fill="none" stroke="#00a3d7" stroke-width="4"/>
+    
+    <!-- Bottom layer -->
+    <circle cx="128" cy="156" r="45" fill="none" stroke="#ffffff" stroke-width="4"/>
+  </g>
+  
+  <!-- Center dot -->
+  <circle cx="128" cy="128" r="12" fill="#f1f1f1"/>
+</svg>

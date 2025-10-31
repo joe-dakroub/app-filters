@@ -4,9 +4,9 @@ import * as filters from "./filters/index.js";
    CONSTANTS & CONFIGURATION
    ===================================================================== */
 const CANVAS_SCALE = 0.75;
+const DOUBLE_TAP_DELAY = 300;
 const FPS_CAP = 30;
 const FRAME_INTERVAL = 1000 / FPS_CAP;
-const DOUBLE_TAP_DELAY = 300;
 const RECORDING_DURATION = 30000;
 
 // Build and sort filters

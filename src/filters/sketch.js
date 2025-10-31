@@ -3,7 +3,7 @@ import { glsl } from "./utils.js";
 export const sketch = {
   id: "sketch",
   name: "Sketch",
-  order: 6,
+  order: 5,
   frag: `#version 300 es
 precision highp float;
 in vec2 vUV;
@@ -267,7 +267,7 @@ void main() {
       display: "Stroke Weight",
       type: "float",
       min: 0.5,
-      max: 2.0,
+      max: 1.0,
       step: 0.1,
       default: 0.5,
     },

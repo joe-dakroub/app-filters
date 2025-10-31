@@ -3,7 +3,7 @@ import { glsl } from "./utils.js";
 export const ascii = {
   id: "ascii",
   name: "ASCII",
-  order: 4,
+  order: 3,
   frag: `#version 300 es
 precision highp float;
 out vec4 o;

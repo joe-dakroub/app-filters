@@ -1,16 +1,18 @@
-export const enhance = {
-  id: "enhance",
-  name: "Enhance",
-  order: 1,
+export const passthrough = {
+  id: "passthrough",
+  name: "Passthrough",
+  order: -1,
   frag: `#version 300 es
 precision highp float;
 in vec2 vUV;
 uniform sampler2D uTex;
-uniform float uSkinSmooth;
-uniform float uBrightness;
-uniform float uSaturation;
-uniform float uSharpness;
 out vec4 fragColor;
+
+// Hard-coded values (previously uniforms with defaults)
+const float SKIN_SMOOTH = 0.35;
+const float BRIGHTNESS = 0.5;
+const float SATURATION = 0.0;
+const float SHARPNESS = 0.5;
 
 // Luminance calculation
 float luma(vec3 color) {
@@ -67,7 +69,7 @@ void main() {
   
   // Apply smoothing only to skin
   float skinAmount = skinMask(color);
-  vec3 result = mix(color, smoothed, skinAmount * uSkinSmooth);
+  vec3 result = mix(color, smoothed, skinAmount * SKIN_SMOOTH);
   
   // Sharpening
   vec3 blurred = vec3(0.0);
@@ -80,15 +82,15 @@ void main() {
   blurred /= 9.0;
   
   // Sharpen non-skin areas
-  vec3 sharpened = result + (result - blurred) * uSharpness * (1.0 - skinAmount * 0.7);
+  vec3 sharpened = result + (result - blurred) * SHARPNESS * (1.0 - skinAmount * 0.7);
   result = sharpened;
   
   // Brightness
-  result = result * (1.0 + uBrightness * 0.3);
+  result = result * (1.0 + BRIGHTNESS * 0.3);
   
   // Saturation
   float l = luma(result);
-  result = mix(vec3(l), result, 1.0 + uSaturation * 0.3);
+  result = mix(vec3(l), result, 1.0 + SATURATION * 0.3);
   
   // Soft Contrast
   result = result * result * (3.0 - 2.0 * result);
@@ -102,42 +104,4 @@ void main() {
   
   fragColor = vec4(result, 1.0);
 }`,
-  uniforms: [
-    {
-      name: "SkinSmooth",
-      display: "Skin Smoothing",
-      type: "float",
-      min: 0.0,
-      max: 1.0,
-      step: 0.05,
-      default: 0.5,
-    },
-    {
-      name: "Brightness",
-      display: "Brightness",
-      type: "float",
-      min: 0.0,
-      max: 1.0,
-      step: 0.05,
-      default: 0.65,
-    },
-    {
-      name: "Saturation",
-      display: "Saturation",
-      type: "float",
-      min: 0.0,
-      max: 1.0,
-      step: 0.05,
-      default: 0.0,
-    },
-    {
-      name: "Sharpness",
-      display: "Sharpness",
-      type: "float",
-      min: 0.0,
-      max: 1.0,
-      step: 0.05,
-      default: 0.5,
-    },
-  ],
 };

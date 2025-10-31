@@ -3,7 +3,7 @@ import { glsl } from "./utils.js";
 export const dither = {
   id: "dither",
   name: "Dither",
-  order: 5,
+  order: 4,
   frag: `#version 300 es
 precision highp float;
 out vec4 o;

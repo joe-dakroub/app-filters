@@ -3,7 +3,7 @@ import { glsl } from "./utils.js";
 export const linocut = {
   id: "linocut",
   name: "Linocut",
-  order: 2,
+  order: 1,
   frag: `#version 300 es
 precision highp float;
 out vec4 o;
@@ -14,7 +14,7 @@ uniform vec2 uRes;
 uniform float uTime;
 uniform float uThreshold;
 uniform vec3 uInkColor;
-uniform vec3 uBgColor;
+uniform vec3 uPaper;
 
 ${glsl.luma}
 ${glsl.hash}
@@ -65,7 +65,7 @@ void main() {
   float cutValue = step(uThreshold, brightness + edge * 0.1);
   
   // Pure high-contrast output
-  vec3 finalCol = mix(uInkColor, uBgColor, cutValue);
+  vec3 finalCol = mix(uInkColor, uPaper, cutValue);
   
   o = vec4(finalCol, 1.0);
 }`,
@@ -77,7 +77,7 @@ void main() {
       min: 0,
       max: 1,
       step: 0.01,
-      default: 0.35,
+      default: 0.5,
     },
     {
       name: "InkColor",
@@ -86,7 +86,7 @@ void main() {
       default: "#0B0B0B",
     },
     {
-      name: "BgColor",
+      name: "Paper",
       display: "Paper",
       type: "color",
       default: "#F3E9DA",

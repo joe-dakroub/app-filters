@@ -3,7 +3,7 @@ import { glsl } from "./utils.js";
 export const duotone = {
   id: "duotone",
   name: "Duotone",
-  order: 3,
+  order: 2,
   frag: `#version 300 es
 precision highp float;
 out vec4 o;

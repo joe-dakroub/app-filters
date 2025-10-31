@@ -1,4 +1,4 @@
-export { enhance } from "./enhance.js";
+export { passthrough } from "./passthrough.js";
 export { ascii } from "./ascii.js";
 export { dither } from "./dither.js";
 export { duotone } from "./duotone.js";
